@@ -1,5 +1,4 @@
 # polygraph
-Polygraph backend
 
 
 
