@@ -7,7 +7,7 @@ To create conda environment:
 ```
 conda create --name polygraph python=3.10.0
 conda activate polygraph 
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 To run:
