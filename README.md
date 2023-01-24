@@ -19,14 +19,14 @@ pip install -r requirements.txt
 
 To run:
 ``` 
-export FLASK_APP=api
+export FLASK_APP=app
 export FLASK_ENV=development
 flask run 
 ```
 
 To run on Windows: 
 ``` 
-set FLASK_APP=api
+set FLASK_APP=app
 set FLASK_ENV=development
 flask run 
 ```
