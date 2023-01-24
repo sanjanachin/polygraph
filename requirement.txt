@@ -7,7 +7,9 @@ cryptography==3.4.8
 dbus-python==1.2.18
 distro==1.7.0
 distro-info===1.1build1
+dnspython==2.3.0
 Flask==2.0.1
+Flask-PyMongo==2.3.0
 httplib2==0.20.2
 importlib-metadata==4.6.4
 itsdangerous==2.1.0
@@ -24,6 +26,7 @@ oauthlib==3.2.0
 PyGObject==3.42.1
 pyinotify==0.9.6
 PyJWT==2.3.0
+pymongo==4.3.3
 pyOpenSSL==21.0.0
 pyparsing==2.4.7
 python-apt==2.3.0+ubuntu2.1
