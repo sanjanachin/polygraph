@@ -1,9 +1,9 @@
 ﻿# Weekly Status Report 2 [January 25th, 2022]
 
 
-## Team Report
+## **Team Report**
 
-#### Past Week Goals
+#### **Past Week Goals**
 
 -   Discuss and finalize project structures for frontend and backend repos
     
@@ -20,7 +20,7 @@
 
   
 
-#### Progress Update
+#### **Progress Update**
 
 -   Finished setting up Git repositories with directories and Readme markdown files
     
@@ -29,7 +29,7 @@
 -   Set up MongoDB
     
 
-#### Following Week Goals
+#### **Following Week Goals**
 
 -   Finalize software architecture and design
     
@@ -38,9 +38,9 @@
 -   Complete a process description document, including a schedule, any necessary updates to team structure, a risk assessment, a test plan, and a documentation plan
     
 
-## Contributions of Team Members
+## **Contributions of Team Members**
 
-#### Past Week Goals
+#### **Past Week Goals**
 
 Aditya: UI design + select component library
 
@@ -52,7 +52,7 @@ Danny: Look into React components, help with DB as needed
 
 Sanjana: Set up backend (including README and setting up initial Flask API) and setup NoSQL DB
 
-#### Current Week Contributions
+#### **Current Week Contributions**
 
  Aditya: Selected react components, wrote markdown file for react app, created preliminary design
 
@@ -64,7 +64,7 @@ Danny: Helped select some React components for preliminary design
 
 Sanjana: Initialized backend repo, including setting up README, conda environment, requirements file, and initial app.py, and looked into NoSQL DB
 
-#### Next Week Planned Contributions
+#### **Next Week Planned Contributions**
 
 Aditya: Contribute to architecture doc, add basic functionality to react project
 
