@@ -20,3 +20,12 @@ import db
 def test():
     db.user_collection.insert_one({"name": "test"})
     return "Connected to the data base!"
+
+# misinformation endpoint
+# raw text will be provided in request ody (req_data)
+# eventually, req_data will be passed to the misinformation detection model
+@app.route("/misinformation", methods=["POST"])
+def parse_request():
+    req_data = request.get_json()
+    print(req_data)
+    return Response("JSON posted", 200)
