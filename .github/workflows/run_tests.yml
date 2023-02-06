@@ -16,8 +16,8 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install dependencies
         run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Run tests
         run: export PYTHONPATH=$PYTHONPATH:$PWD
         run: cd tests
