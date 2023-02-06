@@ -24,7 +24,7 @@ conda activate polygraph
 pip install -r requirements.txt
 ```
 
-To run:
+### To run the app:
 ```
 export FLASK_APP=app
 export FLASK_ENV=development
@@ -37,3 +37,9 @@ set FLASK_APP=app
 set FLASK_ENV=development
 flask run
 ```
+
+### To run the tests: 
+```
+pytest tests
+```
+
