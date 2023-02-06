@@ -12,7 +12,11 @@ jobs:
         with: 
           python-version: '3.10'
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: export PYTHONPATH=$PYTHONPATH:$PWD
+      - name: Set up path
+        run: |
+          cd ..
+          cd ..
+          export PYTHONPATH=$PYTHONPATH:$PWD
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install dependencies
         run: |
