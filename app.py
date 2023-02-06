@@ -27,5 +27,6 @@ def test():
 @app.route("/misinformation", methods=["POST"])
 def parse_request():
     req_data = request.get_json()
+    text = req_data["text"]
     print(req_data)
-    return Response("JSON posted", 200)
+    return Response(text, 200)
