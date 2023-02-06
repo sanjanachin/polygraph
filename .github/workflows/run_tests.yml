@@ -15,6 +15,7 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install dependencies
         run: |
+          ls ${{ github.workspace }}
           python -m pip install --upgrade pip
           pip install -r ${{ github.workspace }}/requirements.txt
       - name: Run tests
