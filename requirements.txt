@@ -57,6 +57,7 @@ multiprocess==0.70.13
 murmurhash==1.0.7
 mypy-extensions==0.4.3
 numpy==1.22.4
+openai==0.26.5
 packaging==21.3
 pandas==1.5.1
 pathspec==0.10.3
@@ -120,6 +121,7 @@ typing_extensions==4.2.0
 urllib3==1.26.9
 uvicorn==0.20.0
 Wand==0.6.11
+wandb==0.13.10
 wasabi==0.9.1
 Werkzeug==2.2.2
 xxhash==3.1.0
