@@ -1,4 +1,7 @@
-from flask import Flask
+import os;
+
+import openai;
+from flask import Flask, redirect, render_template, request, url_for
 from pymongo import MongoClient
 from flask import Flask, render_template, request, url_for, redirect
 from pymongo import MongoClient
@@ -8,9 +11,11 @@ from flask import Response
 # ...
 
 app = Flask(__name__)
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
 @app.route('/')
 def flask_mongodb_atlas():
-    return Response("Polygraph Backend & flask mongodb atlas!", status=200)
+    return Response("Polygraph Backend & Flask Mongodb Atlas!", status=200)
 if __name__ == '__main__':
     app.run(port=8000)
 
@@ -30,3 +35,23 @@ def parse_request():
     text = req_data["text"]
     print(req_data)
     return Response(text, 200)
+
+# model response using openai direct completion
+@app.route("/model", methods=("GET", "POST"))
+def model_basic_req_resp():
+    if request.method == "POST":
+        # a basic response pattern for davinci 003
+        text = request.form["input"]
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            # note specific prompt will be subject to change depending on test accuracy
+            # will eventually integrate prompt data from frontend endpoint
+            prompt="True or false?: " + text,
+            temperature=0.6,
+            # small token size for now, will expand with greater testing
+            max_tokens=100,
+        )
+        # for now take the first choice with no fine-tuning
+        return response.choices[0].text
+
+    return request.args.get("result")
