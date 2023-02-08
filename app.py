@@ -1,11 +1,10 @@
-import os;
+import os
+import db
+import openai
+import requests
 
-import openai;
 from flask import Flask, redirect, render_template, request, url_for
 from pymongo import MongoClient
-from flask import Flask, render_template, request, url_for, redirect
-from pymongo import MongoClient
-import requests
 from flask import Response
 
 # ...
@@ -19,7 +18,6 @@ def flask_mongodb_atlas():
 if __name__ == '__main__':
     app.run(port=8000)
 
-import db
 #test to insert data to the data base
 @app.route("/test")
 def test():
@@ -37,11 +35,11 @@ def parse_request():
     return Response(text, 200)
 
 # model response using openai direct completion
-@app.route("/model", methods=("GET", "POST"))
+@app.route("/model", methods=["POST"])
 def model_basic_req_resp():
     if request.method == "POST":
-        # a basic response pattern for davinci 003
         text = request.get_json()["text"]
+        # a basic response pattern for davinci 003
         response = openai.Completion.create(
             model="text-davinci-003",
             # note specific prompt will be subject to change depending on test accuracy
