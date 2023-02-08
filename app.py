@@ -41,7 +41,7 @@ def parse_request():
 def model_basic_req_resp():
     if request.method == "POST":
         # a basic response pattern for davinci 003
-        text = request.form["input"]
+        text = request.get_json()["text"]
         response = openai.Completion.create(
             model="text-davinci-003",
             # note specific prompt will be subject to change depending on test accuracy
