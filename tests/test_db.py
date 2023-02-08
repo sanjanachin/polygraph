@@ -15,8 +15,7 @@ def add_test_data():
 
 add_test_data()
 
-def test_retrieve_history():
-    # in the future this will test retrieving actual history calling a method in db.py
+def test_retrieve_history_from_testdb():
     result = data.find_one({"_id":"user46"})
     assert result["history"][0][0] == "vaccines"
     assert result["history"][0][1] == "legislation"
