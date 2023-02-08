@@ -24,23 +24,20 @@ conda activate polygraph
 pip install -r requirements.txt
 ```
 
+### To set up your openAI key:
+Make a copy of the example environment variables file
+   ```bash
+   $ scp .env.example .env
+   ```
+Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
+
 ### To run the app:
 
-MacOS:
 ```
-export FLASK_APP=app
-export FLASK_ENV=development
 flask run
 ```
 
-Windows:
-```
-set FLASK_APP=app
-set FLASK_ENV=development
-flask run
-```
-
-### To run the tests: 
+### To run the tests:
 ```
 pytest tests
 ```
