@@ -54,9 +54,7 @@ Polygraph Directory Contents:
    $ scp pytest.ini.example pytest.ini
    ```
 
-7. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
-
-8. (Optional) Add your [API key](https://beta.openai.com/account/api-keys) to the `pytest.ini` file. This will let you properly run pytest with the test_model suite.
+7. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` and `pytest.ini` files
 
 ## To run the app:
 
