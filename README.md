@@ -17,28 +17,47 @@ Main Directory Contents:
   - FrontEndApiHandler.py - the api handler for the UI interface (react)
   - ModelApiHandler.py - the api handler for the model (gpt-3)
 
-### To create conda environment:
-```
-conda create --name polygraph python=3.10.0
-conda activate polygraph
-pip install -r requirements.txt
-```
+## Setup
 
-### To set up your openAI key:
-Make a copy of the example environment variables file
+1. If you don’t have Python installed, [install it from here](https://www.python.org/downloads/)
+
+2. Clone this repository
+
+3. Navigate into the project directory
+
+   ```bash
+   $ cd polygraph
+   ```
+
+4. Create the conda environment:
+   ```bash
+   $ conda create --name polygraph python=3.10.0
+   $ conda activate polygraph
+   ```
+
+5. Install the requirements from requirements.txt
+   ```bash
+   $ pip install -r requirements.txt
+   ```
+
+6. Make a copy of the example environment variables and example pytest.ini file
    ```bash
    $ scp .env.example .env
+   $ scp pytest.ini.example pytest.ini
    ```
-Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
 
-### To run the app:
+7. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` file
 
-```
-flask run
-```
+8. (Optional) Add your [API key](https://beta.openai.com/account/api-keys) to the `pytest.ini` file. This will let you properly run pytest with the test_model suite.
 
-### To run the tests:
-```
-pytest tests
-```
+## To run the app:
 
+   ```bash
+   $ flask run
+   ```
+
+##  To run the tests:
+
+   ```bash
+   $ pytest
+   ```
