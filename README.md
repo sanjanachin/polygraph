@@ -10,12 +10,20 @@ Our project is a website where users can input text (such as facts or news) and 
 4. User history. Once users log in with their credentials, they can view their history of previous inputted text along with the corresponding accuracy evaluations.
 
 ### Project Structure:
-Main Directory Contents:
-- app.py - the main python flask route API
+Polygraph Directory Contents:
+- apihandler/:
+   - FrontEndApiHandler.py - the api handler for the UI interface (react)
+   - ModelApiHandler.py - the api handler for the model (gpt-3)
+- tests/:
+   - test_app.py - basic endpoint pytest suite for the backend
+   - test_db.py - basic endpoint pytest suite for the database
+   - test_app.py - basic post request pytest suite for the backend
+- reports/: directory that stores the group weekly status reports
+- app.py - python Flask route API for frontend, model, and database
+- db.py - mongoDB database module methods
 - requirements.txt - the necessary requirements for client installation
-- apihandler:
-  - FrontEndApiHandler.py - the api handler for the UI interface (react)
-  - ModelApiHandler.py - the api handler for the model (gpt-3)
+- .env.example - the skeleton code for a unique .env creation
+- pytest.ini.example - the skeleton code for a unique pytest.ini creation
 
 ## Setup
 
