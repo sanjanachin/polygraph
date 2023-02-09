@@ -37,19 +37,16 @@ def parse_request():
 # model response using openai direct completion
 @app.route("/model", methods=["POST"])
 def model_basic_req_resp():
-    if request.method == "POST":
-        text = request.get_json()["text"]
-        # a basic response pattern for davinci 003
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            # note specific prompt will be subject to change depending on test accuracy
-            # will eventually integrate prompt data from frontend endpoint
-            prompt="True or false?: " + text,
-            temperature=0.6,
-            # small token size for now, will expand with greater testing
-            max_tokens=100,
-        )
-        # for now take the first choice with no fine-tuning
-        return response.choices[0].text
-
-    return request.args.get("result")
+    text = request.get_json()["text"]
+    # a basic response pattern for davinci 003
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        # note specific prompt will be subject to change depending on test accuracy
+        # will eventually integrate prompt data from frontend endpoint
+        prompt="True or false?: " + text,
+        temperature=0.6,
+        # small token size for now, will expand with greater testing
+        max_tokens=100,
+    )
+    # for now take the first choice with no fine-tuning
+    return Response(response.choices[0].text, 200)
