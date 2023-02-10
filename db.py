@@ -2,7 +2,9 @@ import os
 from flask import Flask
 from flask_pymongo import pymongo
 
-CONNECTION_STRING = "mongodb+srv://" + str(os.environ.get("DATABASE_USERNAME")) + ":" + str(os.environ.get("DATABASE_PASSWORD")) + "@cluster0.w5ydh5i.mongodb.net/?retryWrites=true&w=majority"
+CONNECTION_STRING = "mongodb+srv://" + str(os.environ.get("DATABASE_USERNAME"))\
++ ":" + str(os.environ.get("DATABASE_PASSWORD"))\
++ "@cluster0.w5ydh5i.mongodb.net/?retryWrites=true&w=majority"
 
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Cluster0')
