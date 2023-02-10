@@ -5,23 +5,24 @@ import sys
 sys.path.append("..")
 import db
 
+
 def test_add_delete_user():
-    assert db.add_user("test_user_1")
-    assert not db.add_user("test_user_1")
-    assert db.delete_user("test_user_1")
-    assert not db.delete_user("test_user_1")
+    assert db.add_user("test_add_user")
+    assert not db.add_user("test_add_user")
+    assert db.delete_user("test_add_user")
+    assert not db.delete_user("test_add_user")
 
 
 def test_add_get_user_history():
-    assert db.add_user("test_user_1")
-    db.add_user_history("test_user_1", "test query", "test result")
-    result = db.get_user_history("test_user_1")
+    assert db.add_user("test_user_history")
+    db.add_user_history("test_user_history", "test query", "test result")
+    result = db.get_user_history("test_user_history")
     assert result[0][0] == "test query"
     assert result[0][1] == "test result"
-    assert db.delete_user("test_user_1")
+    assert db.delete_user("test_user_history")
 
-    assert not db.add_user_history("test_user_2", "test", "test")
-    assert not db.get_user_history("test_user_2")
+    assert not db.add_user_history("test_user_history_bad", "test", "test")
+    assert not db.get_user_history("test_user_history_bad")
     
 
 long_test_string = '''
@@ -90,9 +91,9 @@ long_test_string = '''
 
 
 def test_add_user_history_long():
-    assert db.add_user("test_user_1")
-    db.add_user_history("test_user_1", long_test_string, long_test_string)
-    result = db.get_user_history("test_user_1")
+    assert db.add_user("test_user_long")
+    db.add_user_history("test_user_long", long_test_string, long_test_string)
+    result = db.get_user_history("test_user_long")
     assert result[0][0] == long_test_string
     assert result[0][1] == long_test_string
-    db.delete_user("test_user_1")
+    db.delete_user("test_user_long")
