@@ -2,9 +2,11 @@ import os
 from flask import Flask
 from flask_pymongo import pymongo
 
-CONNECTION_STRING = "mongodb+srv://" + str(os.environ.get("DATABASE_USERNAME"))\
-+ ":" + str(os.environ.get("DATABASE_PASSWORD"))\
-+ "@cluster0.w5ydh5i.mongodb.net/?retryWrites=true&w=majority"
+# CONNECTION_STRING = "mongodb+srv://" + str(os.environ.get("DATABASE_USERNAME"))\
+# + ":" + str(os.environ.get("DATABASE_PASSWORD"))\
+# + "@cluster0.w5ydh5i.mongodb.net/?retryWrites=true&w=majority"
+
+CONNECTION_STRING = 'mongodb+srv://polygraph:MF69bjNDIQyYome9@cluster0.w5ydh5i.mongodb.net/?retryWrites=true&w=majority'
 
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('Cluster0')
@@ -16,9 +18,9 @@ def add_user(user_id):
     returns -- True upon successful addition, and False if the user_id passed
     is already in use
     """
-    if (user_collection.find_one({"_id":user_id})):
+    if (user_collection.find_one({'user_id':user_id})):
         return False
-    user_collection.insert_one({"_id:":user_id}, {"history":[]})
+    user_collection.insert_one({'user_id':user_id, 'history':[]})
     return True
 
 
@@ -27,9 +29,9 @@ def delete_user(user_id):
     user_id -- the id associated with the user to be deleted
     returns -- True upon successful deletion, and False if the user was not found
     and the delete failed"""
-    if (not user_collection.find_one({"_id":user_id})):
+    if (not user_collection.find_one({"user_id":user_id})):
         return False
-    user_collection.delete_one({{"_id:":user_id}})
+    user_collection.delete_one({"user_id":user_id})
     return True
 
 
@@ -39,7 +41,11 @@ def get_user_history(user_id):
     returns -- an array of pairs, with the first element of each pair being the user's
     query and the second element being the result from that query. Will return an empty
     array if the user has no history or if the user does not exist"""
-    return user_collection.find_one({"_id":user_id})["history"]
+    user = user_collection.find_one({"user_id":user_id})
+    if user:
+        return user["history"]
+    else:
+        return []
 
 
 def add_user_history(user_id, query, result):
@@ -49,7 +55,8 @@ def add_user_history(user_id, query, result):
     result -- what the program returned from the user's input as a string
     returns -- True if insertion was successful, and false if the user_id was not found
     and the insertion failed"""
-    if (not user_collection.find_one({"_id":user_id})):
+    user = user_collection.find_one({"user_id":user_id})
+    if not user:
         return False
-    user_collection.update_one({"_id":user_id}, {"$addToSet":{"history":[query, result]}})
+    user_collection.update_one({"user_id":user_id}, {"$addToSet":{"history":[query, result]}})
     return True
