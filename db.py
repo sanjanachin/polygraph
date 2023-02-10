@@ -8,12 +8,22 @@ user_collection = pymongo.collection.Collection(db, 'user_collection')
 
 # Adds a new user to the database
 # user_id: the id to be associated with this user for all future DB use
-# Returns True upon successful addition, and False if the user_id passed
+# returns: True upon successful addition, and False if the user_id passed
 # is already in use
 def add_user(user_id):
-    if (not user_collection.find_one({"_id":user_id})):
+    if (user_collection.find_one({"_id":user_id})):
         return False
     user_collection.insert_one({"_id:":user_id}, {"history":[]})
+    return True
+
+# Deletes a user and all of its data from the database
+# user_id: the id associated with the user to be deleted
+# returns: True upon successful deletion, and False if the user was not found
+# and the delete failed
+def delete_user(user_id):
+    if (not user_collection.find_one({"_id":user_id})):
+        return False
+    user_collection.delete_one({{"_id:":user_id}})
     return True
 
 # Retrieves a user's history data
