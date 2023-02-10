@@ -1,10 +1,9 @@
 from flask import Flask
 from flask_pymongo import pymongo
 import pytest
+import sys
+sys.path.append("..")
 import db
-
-data = pymongo.collection.Collection(db, "test_users")
-
 
 def test_add_delete_user():
     assert db.add_user("test_user_1")
