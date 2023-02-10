@@ -38,5 +38,10 @@ def get_user_history(user_id):
 # user_id: the associated id of the user that was assigned when the user was added
 # query: the user's input
 # result: what the program returned from the user's input
+# returns: True if insertion was successful, and false if the user_id was not found
+# and the insertion failed
 def add_user_history(user_id, query, result):
+    if (not user_collection.find_one({"_id":user_id})):
+        return False
     user_collection.update_one({"_id":user_id}, {"$addToSet":{"history":[query, result]}})
+    return True
