@@ -5,11 +5,13 @@ import db
 
 data = pymongo.collection.Collection(db, "test_users")
 
+
 def test_add_delete_user():
     assert db.add_user("test_user_1")
     assert not db.add_user("test_user_1")
     assert db.delete_user("test_user_1")
     assert not db.delete_user("test_user_1")
+
 
 def test_add_get_user_history():
     assert db.add_user("test_user_1")
@@ -22,6 +24,7 @@ def test_add_get_user_history():
     assert not db.add_user_history("test_user_2", "test", "test")
     assert not db.get_user_history("test_user_2")
     
+
 long_test_string = '''
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas 
     vel auctor urna, a molestie ante. Nulla facilisi. Vivamus molestie 
@@ -85,6 +88,7 @@ long_test_string = '''
           quam. Sed rutrum, diam et pellentesque aliquam, augue felis pellentesque
            est, a pulvinar metus lorem placerat elit. Mauris dui.
     '''
+
 
 def test_add_user_history_long():
     assert db.add_user("test_user_1")
