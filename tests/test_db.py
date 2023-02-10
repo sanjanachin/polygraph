@@ -19,6 +19,9 @@ def test_add_get_user_history():
     assert result[0][1] == "test result"
     assert db.delete_user("test_user_1")
 
+    assert not db.add_user_history("test_user_2", "test", "test")
+    assert not db.get_user_history("test_user_2")
+    
 long_test_string = '''
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas 
     vel auctor urna, a molestie ante. Nulla facilisi. Vivamus molestie 
@@ -89,4 +92,4 @@ def test_add_user_history_long():
     result = db.get_user_history("test_user_1")
     assert result[0][0] == long_test_string
     assert result[0][1] == long_test_string
-
+    db.delete_user("test_user_1")
