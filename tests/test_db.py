@@ -86,7 +86,7 @@ long_test_string = '''
         efficitur. Donec venenatis semper magna, fringilla sollicitudin turpis.
          Aenean semper ante in orci iaculis ultricies. Vestibulum sit amet aliquam
           quam. Sed rutrum, diam et pellentesque aliquam, augue felis pellentesque
-           est, a pulvinar metus lorem placerat elit. Mauris dui.
+           est, a pulvinar metus lorem placerat elit. Mauris dui. Duis eros nisl,
     '''
 
 
