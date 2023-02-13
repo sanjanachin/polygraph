@@ -31,7 +31,8 @@ def test():
 def parse_request():
     req_data = request.get_json()
     text = req_data["text"]
-    print(req_data)
+    if text == "":
+        raise Exception("Request text is empty")
     return Response(text, 200)
 
 # model response using openai direct completion
