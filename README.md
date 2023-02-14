@@ -51,7 +51,7 @@ Polygraph Directory Contents:
    $ scp pytest.ini.example pytest.ini
    ```
 
-7. Add your [API key](https://beta.openai.com/account/api-keys) to the newly created `.env` and `pytest.ini` files
+7. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
 
 ## To run the app:
 
