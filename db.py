@@ -1,6 +1,5 @@
 import os
 import certifi
-from flask import Flask
 from flask_pymongo import pymongo
 
 CONNECTION_STRING = "mongodb+srv://" + str(os.environ.get("DATABASE_USERNAME"))\
