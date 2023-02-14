@@ -1,9 +1,10 @@
 import os
 import openai
+import json
 
 import db
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask import Response
 
 app = Flask(__name__)
@@ -33,33 +34,37 @@ def parse_request():
 prompt_string = "The following text contains misinformation. True or false?: "
 
 # model response using openai direct completion
-@app.route("/model", methods=["POST"])
+@app.route("/model", methods=["POST", "OPTIONS"])
 def model_basic_req_resp():
+    headers = {'Content-Type' : 'application/json; charset=utf-8',
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Methods' : '*',
+                    'Access-Control-Allow-Headers' : '*'}
 
-    # def text_to_bool(text):
-    #     get_first = text.split()[0].strip(".")
-    #     if get_first == "True":
-    #         return Response(True, 200)
-    #     elif get_first == "False":
-    #         return Response(False, 200)
-    #     else:
-    #         return Response(False, 400)
+    def res_to_fe_res(res):
+        output = res.choices[0].text
+        get_first = output.split()[0].strip(".")
+        if get_first == "False":
+            return Response(response=json.dumps({"valid": False}), status=200, headers=headers)
+        else:
+            return Response(response=json.dumps({"valid": True}), status=200, headers=headers)
 
-    text = request.get_json()["text"]
-    # a basic response pattern for davinci 003
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        # note specific prompt will be subject to change depending on test accuracy
-        # will eventually integrate prompt data from frontend endpoint
-        prompt=prompt_string + text,
-        temperature=0.6,
-        # small token size for now, will expand with greater testing
-        max_tokens=100,
-    )
-    # for now take the first choice with no fine-tuning
-    output = response.choices[0].text
-    # return text_to_bool(output).get_data()
-    return output
+    if request.method == "POST":
+        text = request.get_json()["text"]
+        # a basic response pattern for davinci 003
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            # note specific prompt will be subject to change depending on test accuracy
+            # will eventually integrate prompt data from frontend endpoint
+            prompt=prompt_string + text,
+            temperature=0.6,
+            # small token size for now, will expand with greater testing
+            max_tokens=100,
+        )
+        # return text_to_bool(output).get_data()
+        return res_to_fe_res(response)
+
+    return Response(status=204, headers=headers)
 
 if __name__ == '__main__':
     app.run(port=8000, ssl_context='adhoc')
