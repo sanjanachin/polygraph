@@ -1,4 +1,6 @@
 [pytest]
 env =
     OPENAI_API_KEY=
+    DATABASE_USERNAME=
+    DATABASE_PASSWORD=
 testpaths = tests
