@@ -1,4 +1,5 @@
 import os
+import certifi
 from flask import Flask
 from flask_pymongo import pymongo
 
@@ -6,7 +7,7 @@ CONNECTION_STRING = "mongodb+srv://" + str(os.environ.get("DATABASE_USERNAME"))\
 + ":" + str(os.environ.get("DATABASE_PASSWORD"))\
 + "@cluster0.w5ydh5i.mongodb.net/?retryWrites=true&w=majority"
 
-client = pymongo.MongoClient(CONNECTION_STRING)
+client = pymongo.MongoClient(CONNECTION_STRING, tlsCAFile=certifi.where())
 db = client.get_database('Cluster0')
 user_collection = pymongo.collection.Collection(db, 'user_collection')
 
