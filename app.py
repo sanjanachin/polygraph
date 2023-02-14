@@ -1,13 +1,10 @@
 import os
-import db
 import openai
-import requests
 
-from flask import Flask, redirect, render_template, request, url_for
-from pymongo import MongoClient
+import db
+
+from flask import Flask, request
 from flask import Response
-
-# ...
 
 app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -33,20 +30,20 @@ def parse_request():
         raise Exception("Request text is empty")
     return Response(text, 200)
 
-prompt_string = "The following text contains misinformation: True or false?: "
+prompt_string = "The following text contains misinformation. True or false?: "
 
 # model response using openai direct completion
 @app.route("/model", methods=["POST"])
 def model_basic_req_resp():
 
-    def text_to_bool(text):
-        get_first = text.split()[0].strip(".")
-        if get_first == "True":
-            return Response(True, 200)
-        elif get_first == "False":
-            return Response(False, 200)
-        else:
-            return Response(False, 400)
+    # def text_to_bool(text):
+    #     get_first = text.split()[0].strip(".")
+    #     if get_first == "True":
+    #         return Response(True, 200)
+    #     elif get_first == "False":
+    #         return Response(False, 200)
+    #     else:
+    #         return Response(False, 400)
 
     text = request.get_json()["text"]
     # a basic response pattern for davinci 003
@@ -61,7 +58,8 @@ def model_basic_req_resp():
     )
     # for now take the first choice with no fine-tuning
     output = response.choices[0].text
-    return text_to_bool(output).get_data()
+    # return text_to_bool(output).get_data()
+    return output
 
 if __name__ == '__main__':
     app.run(port=8000, ssl_context='adhoc')
