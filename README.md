@@ -11,9 +11,6 @@ Our project is a website where users can input text (such as facts or news) and 
 
 ### Project Structure:
 Polygraph Directory Contents:
-- apihandler/:
-   - FrontEndApiHandler.py - the api handler for the UI interface (react)
-   - ModelApiHandler.py - the api handler for the model (gpt-3)
 - tests/:
    - test_app.py - basic endpoint pytest suite for the backend
    - test_db.py - basic endpoint pytest suite for the database
