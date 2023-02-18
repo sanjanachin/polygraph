@@ -13,17 +13,28 @@ def test_add_delete_user():
     assert not db.delete_user("test_add_user")
 
 
-def test_add_get_user_history():
+def test_add_get_delete_user_history():
     assert db.add_user("test_user_history")
-    db.add_user_history("test_user_history", "test query", "test result")
+    db.add_user_history("test_user_history", "test query 1", "test result 1")
+    db.add_user_history("test_user_history", "test query 2", "test result 2")
     result = db.get_user_history("test_user_history")
-    assert result[0][0] == "test query"
-    assert result[0][1] == "test result"
-    assert db.delete_user("test_user_history")
+    assert result[0][0] == "test query 1"
+    assert result[0][1] == "test result 1"
 
+    assert db.delete_user_history("test_user_history", 0)
+    result = db.get_user_history("test_user_history")
+    assert result[0][0] == "test query 2"
+    assert result[0][1] == "test result 2"
+    assert not db.delete_user_history("test_user_history", 1)
+    assert not db.delete_user_history("test_user_history", -1)
+    assert not db.delete_user_history("test_user_history", 2)
+
+    assert not db.delete_user_history("test_user_history_bad", 0)
     assert not db.add_user_history("test_user_history_bad", "test", "test")
     assert not db.get_user_history("test_user_history_bad")
     
+    assert db.delete_user("test_user_history")
+
 
 long_test_string = '''
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas 

@@ -14,9 +14,8 @@ def add_user(user_id):
     """Adds a new user to the database
     user_id -- the id to be associated with this user for all future DB use
     returns -- True upon successful addition, and False if the user_id passed
-    is already in use
-    """
-    if (user_collection.find_one({'user_id':user_id})):
+    is already in use"""
+    if user_collection.find_one({'user_id':user_id}):
         return False
     user_collection.insert_one({'user_id':user_id, 'history':[]})
     return True
@@ -27,7 +26,7 @@ def delete_user(user_id):
     user_id -- the id associated with the user to be deleted
     returns -- True upon successful deletion, and False if the user was not found
     and the delete failed"""
-    if (not user_collection.find_one({"user_id":user_id})):
+    if not user_collection.find_one({"user_id":user_id}):
         return False
     user_collection.delete_one({"user_id":user_id})
     return True
@@ -51,10 +50,27 @@ def add_user_history(user_id, query, result):
     user_id -- the associated id of the user that was assigned when the user was added
     query -- the user's text input as a string
     result -- what the program returned from the user's input as a string
-    returns -- True if insertion was successful, and false if the user_id was not found
+    returns -- True if insertion was successful, and False if the user_id was not found
     and the insertion failed"""
     user = user_collection.find_one({"user_id":user_id})
     if not user:
         return False
     user_collection.update_one({"user_id":user_id}, {"$addToSet":{"history":[query, result]}})
+    return True
+
+def delete_user_history(user_id, index):
+    """
+    Deletes a specific entry from a user's history data
+
+    user_id -- the associated id of the user that was assigned when the user was added
+    index -- the index of the history entry to be deleted
+    returns -- True if deletion was successful, and False if the user_id was not found or if the index was out of range"""
+    user = user_collection.find_one({"user_id": user_id})
+    if not user:
+        return False
+    history = user["history"]
+    if index < 0 or index >= len(history):
+        return False
+    history.pop(index)
+    user_collection.update_one({"user_id": user_id}, {"$set": {"history": history}})
     return True
