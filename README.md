@@ -60,8 +60,8 @@ Polygraph Directory Contents:
 
 6. Make a copy of the example environment variables and example pytest.ini file
    ```bash
-   $ scp .env.example .env
-   $ scp pytest.ini.example pytest.ini
+   $ cp .env.example .env
+   $ cp pytest.ini.example pytest.ini
    ```
 
 7. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
