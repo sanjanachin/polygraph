@@ -39,32 +39,34 @@ Polygraph Directory Contents:
 
 1. If you don’t have Python installed, [install it from here](https://www.python.org/downloads/)
 
-2. Clone this repository
+2. If you don't have conda installed, [install it from here](https://conda.io/projects/conda/en/stable/user-guide/install/download.html)
 
-3. Navigate into the project directory
+3. Clone this repository
+
+4. Navigate into the project directory
 
    ```bash
    $ cd polygraph
    ```
 
-4. Create the conda environment:
+5. Create the conda environment:
    ```bash
    $ conda create --name polygraph python=3.10.0
    $ conda activate polygraph
    ```
 
-5. Install the requirements from requirements.txt
+6. Install the requirements from requirements.txt
    ```bash
    $ pip install -r requirements.txt
    ```
 
-6. Make a copy of the example environment variables and example pytest.ini file
+7. Make a copy of the example environment variables and example pytest.ini file
    ```bash
    $ cp .env.example .env
    $ cp pytest.ini.example pytest.ini
    ```
 
-7. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
+8. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
 
 ## To run the app:
 
