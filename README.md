@@ -6,8 +6,7 @@ Our project is a website where users can input text (such as facts or news) and 
 ### Features:
 1. User accounts. Users will be able to create accounts with which they can use to gain access to our website fact checker.
 
-   i.  Non-operational: Firebase login authentication system not yet implemented
-
+   i.  Non-operational: Firebase login authentication system not yet implemented.
 
 2. False text detection. Once users log in, they can input text and receive an evaluation of its accuracy along with an explanation of the evaluation.
 
@@ -15,13 +14,13 @@ Our project is a website where users can input text (such as facts or news) and 
 
 3. Text validation. The text that users input will be vetted and verified for acceptable language and profanity to encourage result accuracy.
 
-   i.  Partially Operational: Length of 500 words is operational, profanity is not fully operational - but for test case.
+   i.  Operational: Maximum query length and profanity filter have been implemented.
 
 4. User history. Once users log in with their credentials, they can view their history of previous inputted text along with the corresponding accuracy evaluations.
 
-   i.  Non-operational: Database can store and interact with user history, but endpoint to UI and presentation not implemented.
+   i.  Non-operational: Database can store and interact with user history, but endpoint to UI not implemented.
 
-
+## Developer Guidelines
 ### Project Structure:
 Polygraph Directory Contents:
 - tests/:
@@ -36,7 +35,6 @@ Polygraph Directory Contents:
 - pytest.ini.example - the skeleton code for a unique pytest.ini creation
 
 ## Setup
-
 1. If you don’t have Python installed, [install it from here](https://www.python.org/downloads/)
 
 2. If you don't have conda installed, [install it from here](https://conda.io/projects/conda/en/stable/user-guide/install/download.html)
@@ -68,16 +66,17 @@ Polygraph Directory Contents:
 
 8. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
 
-## To run the app:
+### Starting the Flask Application
+1. Make sure you have cloned and are running the [polygraph backend](https://github.com/sanjanachin/polygraph)
 
+2. Run the app locally using the following command:
    ```bash
    $ flask run
    ```
 
-##  To run the tests:
-
+### Testing
+Test suites can be run from the command line with the following command:
    ```bash
    $ pytest
    ```
-
-In order to use the app with the UI, the UI must be running as well. You can find the instructions to run it [here](https://github.com/sanjanachin/polygraph-ui).
+This will run all test suites within the tests/ directory
