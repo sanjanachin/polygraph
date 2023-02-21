@@ -53,6 +53,7 @@ Our project is a website where users can input text (such as facts or news) and 
    ```
 
 8. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
+   - Note for purposes of peer review: Message Connor Lynch (clynch20@uw.edu) on Slack or via email for the OpenAI and DB keys
 
 
 ## Starting the Flask Application
@@ -67,7 +68,7 @@ Our project is a website where users can input text (such as facts or news) and 
 Report all bugs as GitHub issues.
 
 ## Known bugs
-Known bugs can be found in the GitHub issues tab.
+Known bugs can be found [here](https://docs.google.com/document/d/1YKue4Q9jE8VMdDHGTT1DMFyiaw8GF5UWjrJQ4gYJcew/edit?usp=sharing).
 
 <br />
 
@@ -117,3 +118,6 @@ class name_of_class:
 ```
    - Then, follow the steps above for adding to an existing test file to add a new unit test to your new test file.
    - Note that the test file’s name must start with 'test' (e.g., `test_app.py`, `test_db.py`, etc)
+   
+## Building a release 
+To build a new release of polygraph, commit the changes associated with the new release and use a Git tag to tag the release with the new version number. 
