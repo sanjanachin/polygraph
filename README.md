@@ -79,3 +79,5 @@ Polygraph Directory Contents:
    ```bash
    $ pytest
    ```
+
+In order to use the app with the UI, the UI must be running as well. You can find the instructions to run it [here](https://github.com/sanjanachin/polygraph-ui).
