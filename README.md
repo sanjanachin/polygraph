@@ -1,9 +1,11 @@
 # Polygraph Backend
 
+# User Manual
+
 ## Polygraph Project Goals
 Our project is a website where users can input text (such as facts or news) and check it for accuracy. We will fine tune a GPT-3 model to evaluate the accuracy of inputted text, and provide users with an evaluation of whether their text is accurate or not, along with an explanation of why. Our workflow will look something like this: a user logs in to the fact checker website using their credentials. Once they log in, they see a text box where they can input text and receive an evaluation of its accuracy. They can also view their history (which is their previously inputted text along with the corresponding evaluations).
 
-### Features:
+### Features
 1. User accounts. Users will be able to create accounts with which they can use to gain access to our website fact checker.
 
    i.  Non-operational: Firebase login authentication system not yet implemented
@@ -20,23 +22,9 @@ Our project is a website where users can input text (such as facts or news) and 
 4. User history. Once users log in with their credentials, they can view their history of previous inputted text along with the corresponding accuracy evaluations.
 
    i.  Non-operational: Database can store and interact with user history, but endpoint to UI and presentation not implemented.
-
-
-### Project Structure:
-Polygraph Directory Contents:
-- tests/:
-   - test_app.py - basic endpoint pytest suite for the backend
-   - test_db.py - basic endpoint pytest suite for the database
-   - test_app.py - basic post request pytest suite for the backend
-- reports/: directory that stores the group weekly status reports
-- app.py - python Flask route API for frontend, model, and database
-- db.py - mongoDB database module methods
-- requirements.txt - the necessary requirements for client installation
-- .env.example - the skeleton code for a unique .env creation
-- pytest.ini.example - the skeleton code for a unique pytest.ini creation
-
-## Setup
-
+   
+   
+### Setup
 1. If you don’t have Python installed, [install it from here](https://www.python.org/downloads/)
 
 2. If you don't have conda installed, [install it from here](https://conda.io/projects/conda/en/stable/user-guide/install/download.html)
@@ -68,16 +56,66 @@ Polygraph Directory Contents:
 
 8. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
 
-## To run the app:
+9. In order to use the app with the UI, the UI must be running as well. You can find the instructions to run it and use it [here](https://github.com/sanjanachin/polygraph-ui).
+
+## To run the app
 
    ```bash
    $ flask run
-   ```
+   ```  
 
-##  To run the tests:
+## Reporting a bug
+Report all bugs as GitHub issues. 
+
+## Known bugs
+Known bugs can be found in the GitHub issues tab. 
+
+   
+<br />
+
+# Developer Guidelines
+
+### Prerequisites 
+See the user guidelines above for instructions on installing, building, and running the software and reporting bugs. 
+
+### Obtaining source code
+All of the source code for the polygraph backend can be found in this repo. The source code for the polygraph UI can be found [here](https://github.com/sanjanachin/polygraph-ui)
+
+### Project Structure
+Polygraph Directory Contents:
+- tests/:
+   - test_app.py - basic endpoint pytest suite for the backend
+   - test_db.py - basic endpoint pytest suite for the database
+   - test_app.py - basic post request pytest suite for the backend
+- reports/: directory that stores the group weekly status reports
+- app.py - python Flask route API for frontend, model, and database
+- db.py - mongoDB database module methods
+- requirements.txt - the necessary requirements for client installation
+- .env.example - the skeleton code for a unique .env creation
+- pytest.ini.example - the skeleton code for a unique pytest.ini creation
+
+##  To run the tests
 
    ```bash
    $ pytest
    ```
+   
+## To add new tests
+To add a new test to the codebase, you can either add a test to one of the existing test files or create a new test file. 
 
-In order to use the app with the UI, the UI must be running as well. You can find the instructions to run it [here](https://github.com/sanjanachin/polygraph-ui).
+- If adding to an existing test file, add a new function in the test file with the following format:
+```
+def name_of_test(self):
+    {test body goes here}
+```
+   - Note that the test name in the function header must start with 'test' (e.g., `test_healthcheck`, `test_misinformation`, etc)
+
+- If creating a new test file, create a file in the `/tests` directory with this format: 
+```
+import pytest
+class name_of_class:
+```
+   - Then, follow the steps above for adding to an existing test file to add a new unit test to your new test file. 
+   - Note that the test file’s name must start with 'test' (e.g., `test_app.py`, `test_db.py`, etc) 
+
+
