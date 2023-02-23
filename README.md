@@ -1,6 +1,6 @@
 # Polygraph Backend
 
-__NOTE FOR PEER REVIEWERS: This project has two repos, a backend repo and a UI repo. In order to use the app, both of them must be running. Follow the below instructions to run the backend and follow the instructions [here](https://github.com/sanjanachin/polygraph-ui) to run the UI.__
+__If you want to run the application: This project has two repos, a backend repo and a UI repo. In order to use the app, both of them must be running. Follow the below instructions to run the backend and follow the instructions [here](https://github.com/sanjanachin/polygraph-ui) to run the UI.__
 
 # User Manual
 
