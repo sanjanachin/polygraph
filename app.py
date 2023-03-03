@@ -52,16 +52,17 @@ def handle_fe_request():
     # Find the user query, and raise exception if empty
     # NOTE: Parsing will be handled by frontend for future iterations
     query = request.get_json()["text"]
+    db_user = request.get_json()["user"]
     if query == "":
         raise Exception("Request text is empty")
 
     model_res = model_basic_resp(request)
     # TODO: Get user tag from firebase auth login and add to DB
-    db.add_user(db_user_1)
+    db.add_user(db_user)
     # if (size(db.get_user_history(db_user_1)) > 20):
     #     db.addAndReplace(db_user_1)
     # TODO: Introduce find and replace option for max length history
-    db.add_user_history(db_user_1, query, str(model_res.get_json()["valid"]))
+    db.add_user_history(db_user, query, str(model_res.get_json()["valid"]))
     # return the model response back to frontend
     return model_res
 
