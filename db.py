@@ -56,6 +56,8 @@ def add_user_history(user_id, query, result):
     if not user:
         return False
     user_collection.update_one({"user_id":user_id}, {"$addToSet":{"history":[query, result]}})
+    while len(get_user_history(user_id)) > 20:
+        delete_user_history(user_id, 0)
     return True
 
 def delete_user_history(user_id, index):

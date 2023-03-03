@@ -107,4 +107,12 @@ def test_add_user_history_long():
     result = db.get_user_history("test_user_long")
     assert result[0][0] == long_test_string
     assert result[0][1] == long_test_string
-    db.delete_user("test_user_long")
+    assert db.delete_user("test_user_long")
+
+
+def test_add_more_than_20_history_entries():
+    assert db.add_user("test_user")
+    for i in range(0, 25):
+        assert db.add_user_history("test_user", "test query" + str(i), "test result" + str(i))
+    assert len(db.get_user_history("test_user")) == 20
+    assert db.delete_user("test_user")
