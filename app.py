@@ -29,7 +29,7 @@ db_user_1 = "michaeljordan3"
 db_user_2 = "lilamaresh"
 
 # User history endpoint for frontend to retrieve user history
-# Username is the user's email, provided in the request body 
+# Username is the user's email, provided in the request body
 @app.route("/history", methods=["POST", "OPTIONS"])
 def get_history():
     # If route is an OPTIONS from frontend, return the permission headers
@@ -40,7 +40,7 @@ def get_history():
         raise Exception("User email is empty")
     history = db.get_user_history(user)
     return Response(response=json.dumps({"history": history}), status=200, headers=headers)
-    
+
 
 # Frontend misinformation endpoint that will handle all of the necessary
 # interactions between backend and firebase + model + db
@@ -52,9 +52,12 @@ def handle_fe_request():
     # Find the user query, and raise exception if empty
     # NOTE: Parsing will be handled by frontend for future iterations
     query = request.get_json()["text"]
-    db_user = request.get_json()["user"]
     if query == "":
         raise Exception("Request text is empty")
+
+    db_user = request.get_json()["user"]
+    if db_user == "":
+        raise Exception("Request user not given")
 
     model_res = model_basic_resp(request)
     # TODO: Get user tag from firebase auth login and add to DB
