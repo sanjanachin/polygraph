@@ -15,18 +15,21 @@ class TestModel:
 
     def test_model_simple_false(self):
         test_str = "Obama was the first U.S. president."
-        response = app.test_client().post('/misinformation', json={"text": test_str})
+        response = app.test_client().post('/misinformation',
+                                          json={"text": test_str, "user": "test_user1"})
         assert response.status_code == 200
         assert response.text == "{\"valid\": false}"
 
     def test_model_simple_true(self):
         test_str = "Earth has one moon."
-        response = app.test_client().post('/misinformation', json={"text": test_str})
+        response = app.test_client().post('/misinformation',
+                                          json={"text": test_str, "user": "test_user2"})
         assert response.status_code == 200
         assert response.text == "{\"valid\": true}"
 
     def test_model_complex(self):
         test_str = "Donald Trump won the 2020 election."
-        response = app.test_client().post('/misinformation', json={"text": test_str})
+        response = app.test_client().post('/misinformation',
+                                          json={"text": test_str, "user": "test_user3"})
         assert response.status_code == 200
         assert response.text == "{\"valid\": false}"
