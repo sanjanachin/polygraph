@@ -46,7 +46,9 @@ def get_user_history(user_id):
 
 
 def add_user_history(user_id, query, result):
-    """Inserts a new entry into a user's history data
+    """Inserts a new entry into a user's history data. if there are more than 20 items
+    in the history already, it will automatically delete the least recent entries until
+    there are 20 entries.
     user_id -- the associated id of the user that was assigned when the user was added
     query -- the user's text input as a string
     result -- what the program returned from the user's input as a string
@@ -56,12 +58,13 @@ def add_user_history(user_id, query, result):
     if not user:
         return False
     user_collection.update_one({"user_id":user_id}, {"$addToSet":{"history":[query, result]}})
+    while len(get_user_history(user_id)) > 20:
+        delete_user_history(user_id, 0)
     return True
 
 def delete_user_history(user_id, index):
     """
     Deletes a specific entry from a user's history data
-
     user_id -- the associated id of the user that was assigned when the user was added
     index -- the index of the history entry to be deleted
     returns -- True if deletion was successful, and False if the user_id was not found or if the index was out of range"""
