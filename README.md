@@ -54,7 +54,7 @@ Our project is a website where users can input text (such as facts or news) and 
    $ cp pytest.ini.example pytest.ini
    ```
 
-8. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files
+8. Add your [openAI key](https://beta.openai.com/account/api-keys) and [MongoDB username + password](https://www.mongodb.com/docs/cloud-manager/tutorial/enable-mongodbcr-authentication-for-group/) to the newly created `.env` and `pytest.ini` files. If you don't have a Mongo database, you can follow the instructions found [here](https://www.mongodb.com/basics/create-database) to create one.
    - Note for purposes of peer review: Message Connor Lynch (clynch20@uw.edu) on Slack or via email for the OpenAI and DB keys
 
 
