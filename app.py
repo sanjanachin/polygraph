@@ -39,8 +39,10 @@ def get_history():
     if user == "":
         raise Exception("User email is empty")
     history = db.get_user_history(user)
+    obj_list = []
+    for entry in history:
+        obj_list.append(json.dumps({"text" : entry[0], "valid" : "True" == entry[1]}))
     return Response(response=json.dumps({"history": history}), status=200, headers=headers)
-
 
 # Frontend misinformation endpoint that will handle all of the necessary
 # interactions between backend and firebase + model + db
@@ -49,24 +51,20 @@ def handle_fe_request():
     # If route is an OPTIONS from frontend, return the permission headers
     if request.method == "OPTIONS":
         return Response(status=204, headers=headers)
-    # Find the user query, and raise exception if empty
-    # NOTE: Parsing will be handled by frontend for future iterations
+
+    # Find the user query and email, and raise exception if empty
     query = request.get_json()["text"]
     if query == "":
         raise Exception("Request text is empty")
-
     db_user = request.get_json()["user"]
     if db_user == "":
         raise Exception("Request user not given")
 
+    # Update DB with new history information
     model_res = model_basic_resp(request)
-    # TODO: Get user tag from firebase auth login and add to DB
     db.add_user(db_user)
-    # if (size(db.get_user_history(db_user_1)) > 20):
-    #     db.addAndReplace(db_user_1)
-    # TODO: Introduce find and replace option for max length history
     db.add_user_history(db_user, query, str(model_res.get_json()["valid"]))
-    # return the model response back to frontend
+    # Return the model response back to frontend
     return model_res
 
 # Takes a request with text and outputs the truth value generated from
