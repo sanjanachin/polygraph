@@ -25,9 +25,6 @@ headers = {'Content-Type' : 'application/json; charset=utf-8',
                 'Access-Control-Allow-Methods' : '*',
                 'Access-Control-Allow-Headers' : '*'}
 
-db_user_1 = "michaeljordan3"
-db_user_2 = "lilamaresh"
-
 # User history endpoint for frontend to retrieve user history
 # Username is the user's email, provided in the request body
 @app.route("/history", methods=["POST", "OPTIONS"])
@@ -39,10 +36,8 @@ def get_history():
     if user == "":
         raise Exception("User email is empty")
     history = db.get_user_history(user)
-    obj_list = []
-    for entry in history:
-        obj_list.append(json.dumps({"text" : entry[0], "valid" : "True" == entry[1]}))
-    return Response(response=json.dumps({"history": history}), status=200, headers=headers)
+    his_json = [{"text" : e[0], "valid" : "True" == e[1]} for e in history]
+    return Response(response=json.dumps({"history" : his_json}), status=200, headers=headers)
 
 # Frontend misinformation endpoint that will handle all of the necessary
 # interactions between backend and firebase + model + db
